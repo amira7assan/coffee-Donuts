@@ -141,7 +141,7 @@ class Content extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.network(image, height: 300),  // Updated to use Image.network
+        Image.network(image, height: 300),
         const SizedBox(height: 20),
         Text(
           title,
