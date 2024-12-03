@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_project/models/Cart2.dart';
-import 'package:flutter/material.dart';
-import 'package:mobile_project/models/Cart2.dart';
+
 class AddToCard extends StatelessWidget {
   final Cart cart;
   const AddToCard({Key? key, required this.cart}) : super(key: key);
