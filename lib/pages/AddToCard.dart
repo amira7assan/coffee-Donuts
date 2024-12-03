@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_project/models/Cart2.dart';
+import 'package:mobile_project/models/product.dart';
 import 'package:mobile_project/models/cart_iteam.dart';
 import 'package:mobile_project/models/Cart2.dart';
 
@@ -12,7 +14,6 @@ class AddToCard extends StatefulWidget {
 
 class _AddToCardState extends State<AddToCard> {
 
-  // Method to increase quantity by 1
   void _increaseQuantity(CartItem cartItem) {
     setState(() {
       cartItem.quantity++;

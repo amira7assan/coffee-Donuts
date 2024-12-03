@@ -5,6 +5,7 @@ import 'package:mobile_project/models/cart_iteam.dart';
 import '../models/product.dart';
 import '../widget/ProductList.dart';
 import 'package:mobile_project/models/Cart2.dart';
+import 'package:mobile_project/pages/Fav.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -16,41 +17,64 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   int _selectedIndex = 0;
   final Cart _cart = Cart();
+  final List<Product> _favorites = [];
+  final Map<Product, bool> _isFavorite = {}; // Tracks favorite status of each product.
 
   // Method to handle adding an item to the cart
   void _addToCart(Product product) {
     setState(() {
       _cart.addItem(CartItem(product: product, quantity: 1));
     });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('${product.title} added to cart!'),
+        duration: const Duration(seconds: 2),
+      ),
+    );
   }
 
-  // Method to handle removing an item from the cart
-  void _removeFromCart(CartItem cartItem) {
+  // Method to toggle the favorite status
+  void _toggleFavorite(Product product) {
     setState(() {
-      _cart.removeItem(cartItem);
+      if (_isFavorite[product] == true) {
+        _isFavorite[product] = false;
+        _favorites.remove(product);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('${product.title} removed from favorites!'),
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      } else {
+        _isFavorite[product] = true;
+        _favorites.add(product);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('${product.title} added to favorites!'),
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      }
     });
   }
 
-  // Method to handle increasing the quantity of an item in the cart
-  void _increaseQuantity(CartItem cartItem) {
-    setState(() {
-      _cart.addItem(cartItem);  // Increase the quantity by adding the same item again
-    });
-  }
-
-  // Method to handle decreasing the quantity of an item in the cart
-  void _decreaseQuantity(CartItem cartItem) {
-    setState(() {
-      _cart.removeItem(cartItem);  // Decrease the quantity by removing the item
-    });
-  }
-
+  // Bottom navigation bar item tapped
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
 
-    if (index == 2) {
+    if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FavouritesPage(
+            favouriteProducts: _favorites,
+            onRemoveFromFavourites: _toggleFavorite,
+          ),
+        ),
+      );
+    } else if (index == 2) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => AddToCard(cart: _cart)),
@@ -74,16 +98,29 @@ class _HomepageState extends State<Homepage> {
               );
             },
           ),
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FavouritesPage(
+                    favouriteProducts: _favorites,
+                    onRemoveFromFavourites: _toggleFavorite,
+                  ),
+                ),
+              );
+            },
+          ),
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ProductList(
-          products: testProduct,  // Assuming `testProduct` is your list of products
+          products: myData, // Replace with your actual product data
           onAddToCart: _addToCart,
-          onRemoveFromCart: _removeFromCart,
-          onIncreaseQuantity: _increaseQuantity,
-          onDecreaseQuantity: _decreaseQuantity,
+          onAddToFavorites: _toggleFavorite,
+          isFavorite: _isFavorite, // Pass the favorite status to ProductList
         ),
       ),
       bottomNavigationBar: BottomNavBar(

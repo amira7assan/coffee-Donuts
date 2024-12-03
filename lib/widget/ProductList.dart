@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
 import '../models/cart_iteam.dart';
-
+import 'package:flutter/material.dart';
+import '../models/product.dart';
+import '../models/cart_iteam.dart';
 class ProductList extends StatelessWidget {
   final List<Product> products;
   final Function(Product) onAddToCart;
-  final Function(CartItem) onRemoveFromCart;
-  final Function(CartItem) onIncreaseQuantity;
-  final Function(CartItem) onDecreaseQuantity;
+  final Function(Product) onAddToFavorites;
+  final Map<Product, bool> isFavorite; // Favorite status of products.
 
   const ProductList({
     Key? key,
     required this.products,
     required this.onAddToCart,
-    required this.onRemoveFromCart,
-    required this.onIncreaseQuantity,
-    required this.onDecreaseQuantity,
+    required this.onAddToFavorites,
+    required this.isFavorite,
   }) : super(key: key);
 
   @override
@@ -45,51 +45,32 @@ class ProductList extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 80),
-                      child: Text(
-                        product.category,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                    Text(
+                      product.title,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 80),
-                      child: Text(
-                        product.title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
+                    Text(
+                      '\$${product.price.toStringAsFixed(2)}',
+                      style: const TextStyle(color: Colors.black),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 80),
-                      child: Text(
-                        '\$${product.price.toStringAsFixed(2)}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 170),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.add_shopping_cart_sharp,
-                          size: 18,
-                        ),
-                        onPressed: () {
-                          onAddToCart(product);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Added to cart successfully!'),
-                              duration: Duration(seconds: 2),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 50),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.favorite,
+                              color: isFavorite[product] == true ? Colors.red : Colors.grey,
                             ),
-                          );
-                        },
-                      ),
+                            onPressed: () => onAddToFavorites(product),
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.add_shopping_cart),
+                          onPressed: () => onAddToCart(product),
+                        ),
+                      ],
                     ),
                   ],
                 ),

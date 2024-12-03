@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
@@ -17,20 +18,20 @@ class BottomNavBar extends StatelessWidget {
       currentIndex: selectedIndex,
       onTap: onItemTapped,
       selectedItemColor: Colors.black,
-      unselectedItemColor: Colors.black,
+      unselectedItemColor: Colors.black.withOpacity(0.6),
       selectedLabelStyle: const TextStyle(color: Colors.black),
       unselectedLabelStyle: const TextStyle(color: Colors.black),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home, color: Colors.black),
+          icon: Icon(Icons.home),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.search, color: Colors.black),
+          icon: Icon(Icons.search),
           label: 'Category',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart, color: Colors.black),
+          icon: Icon(Icons.shopping_cart),
           label: 'Go to Cart',
         ),
         BottomNavigationBarItem(
@@ -38,7 +39,7 @@ class BottomNavBar extends StatelessWidget {
           label: 'Favorites',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person, color: Colors.black),
+          icon: Icon(Icons.person),
           label: 'Me',
         ),
       ],

@@ -14,7 +14,7 @@ class Product {
   });
 }
 
-List<Product> testProduct = [
+List<Product> myData = [
   Product(
     id: '1',
     category: 'Coffee',
