@@ -1,10 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:mobile_project/models/Cart2.dart';
-import '../models/product.dart';
-import 'package:flutter/material.dart';
-import '../models/product.dart';
-
+import 'package:mobile_project/models/product.dart';
 class FavouritesPage extends StatelessWidget {
   final List<Product> favouriteProducts;
   final Function(Product) onRemoveFromFavourites;

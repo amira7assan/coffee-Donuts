@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
-import '../models/cart_iteam.dart';
-import 'package:flutter/material.dart';
-import '../models/product.dart';
-import '../models/cart_iteam.dart';
+import 'package:mobile_project/pages/details.dart';
 class ProductList extends StatelessWidget {
   final List<Product> products;
   final Function(Product) onAddToCart;
   final Function(Product) onAddToFavorites;
-  final Map<Product, bool> isFavorite; // Favorite status of products.
+  final Map<Product, bool> isFavorite;
 
   const ProductList({
     Key? key,
@@ -33,11 +30,22 @@ class ProductList extends StatelessWidget {
         return Card(
           elevation: 3,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Image.asset(
-                  product.image,
-                  fit: BoxFit.cover,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductDetailsPage(product: product),
+                      ),
+                    );
+                  },
+                  child: Image.asset(
+                    product.image,//width: 300,height: 300
+                     fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Padding(

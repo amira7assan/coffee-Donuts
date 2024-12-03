@@ -6,6 +6,7 @@ import '../models/product.dart';
 import '../widget/ProductList.dart';
 import 'package:mobile_project/models/Cart2.dart';
 import 'package:mobile_project/pages/Fav.dart';
+import 'package:mobile_project/widget/Search.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -18,9 +19,9 @@ class _HomepageState extends State<Homepage> {
   int _selectedIndex = 0;
   final Cart _cart = Cart();
   final List<Product> _favorites = [];
-  final Map<Product, bool> _isFavorite = {}; // Tracks favorite status of each product.
+  final Map<Product, bool> _isFavorite = {};
+  List<Product> _filteredProducts = [];
 
-  // Method to handle adding an item to the cart
   void _addToCart(Product product) {
     setState(() {
       _cart.addItem(CartItem(product: product, quantity: 1));
@@ -33,7 +34,6 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
-  // Method to toggle the favorite status
   void _toggleFavorite(Product product) {
     setState(() {
       if (_isFavorite[product] == true) {
@@ -112,15 +112,29 @@ class _HomepageState extends State<Homepage> {
               );
             },
           ),
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: ProductSearchDelegate(
+                  products: myData,
+                  onProductSelected: (product) {
+                    _addToCart(product);
+                  },
+                ),
+              );
+            },
+          ),
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ProductList(
-          products: myData, // Replace with your actual product data
+          products: _filteredProducts.isEmpty ? myData : _filteredProducts, // Use filtered products or all
           onAddToCart: _addToCart,
           onAddToFavorites: _toggleFavorite,
-          isFavorite: _isFavorite, // Pass the favorite status to ProductList
+          isFavorite: _isFavorite,
         ),
       ),
       bottomNavigationBar: BottomNavBar(

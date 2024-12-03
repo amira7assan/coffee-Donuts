@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_project/models/Cart2.dart';
-import 'package:mobile_project/models/product.dart';
 import 'package:mobile_project/models/cart_iteam.dart';
-import 'package:mobile_project/models/Cart2.dart';
 
 class AddToCard extends StatefulWidget {
   final Cart cart;
@@ -20,18 +18,16 @@ class _AddToCardState extends State<AddToCard> {
     });
   }
 
-  // Method to decrease quantity by 1 or remove item if quantity is 1
   void _decreaseQuantity(CartItem cartItem) {
     setState(() {
       if (cartItem.quantity > 1) {
         cartItem.quantity--;
       } else {
-        _showConfirmationDialog(cartItem); // Show confirmation dialog before removal
+        _showConfirmationDialog(cartItem);
       }
     });
   }
 
-  // Show a confirmation dialog to the user
   void _showConfirmationDialog(CartItem cartItem) {
     showDialog(
       context: context,
