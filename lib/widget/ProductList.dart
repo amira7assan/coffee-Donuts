@@ -1,12 +1,22 @@
-// widget/ProductList.dart
 import 'package:flutter/material.dart';
 import '../models/product.dart';
+import '../models/cart_iteam.dart';
 
 class ProductList extends StatelessWidget {
   final List<Product> products;
   final Function(Product) onAddToCart;
+  final Function(CartItem) onRemoveFromCart;
+  final Function(CartItem) onIncreaseQuantity;
+  final Function(CartItem) onDecreaseQuantity;
 
-  const ProductList({Key? key, required this.products, required this.onAddToCart}) : super(key: key);
+  const ProductList({
+    Key? key,
+    required this.products,
+    required this.onAddToCart,
+    required this.onRemoveFromCart,
+    required this.onIncreaseQuantity,
+    required this.onDecreaseQuantity,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,18 +73,24 @@ class ProductList extends StatelessWidget {
                         ),
                       ),
                     ),
-                        Padding(
-                        padding: const EdgeInsets.only(left: 120),
-                  child: IconButton(
-                  icon: const Icon(Icons.shopping_cart),
-                    onPressed: () {
+                    Padding(
+                      padding: const EdgeInsets.only(left: 170),
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.add_shopping_cart_sharp,
+                          size: 18,
+                        ),
+                        onPressed: () {
                           onAddToCart(product);
                           ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('${product.title} added to cart!'))
-                                );
-                      },
-                   ),
-                   ),
+                            const SnackBar(
+                              content: Text('Added to cart successfully!'),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
