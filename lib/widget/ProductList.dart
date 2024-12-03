@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:mobile_project/models/Cart.dart';
 import '../models/product.dart';
 
 class ProductList extends StatelessWidget {
@@ -31,32 +32,50 @@ class ProductList extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 120),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 120),
+                      child: Text(
                         product.category,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 120),
+                      child: Text(
                         product.title,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
-                      Text(
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 120),
+                      child: Text(
                         '\$${product.price.toStringAsFixed(2)}',
                         style: const TextStyle(
-                          color: Colors.grey,
+                          color: Colors.black,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 150),
+                      child: IconButton(
+                        icon: const Icon(Icons.add_shopping_cart),
+                        onPressed: () {
+                          Cart.addToCart(product);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('${product.title} added to cart')),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

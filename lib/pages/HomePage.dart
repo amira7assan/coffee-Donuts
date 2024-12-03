@@ -22,7 +22,7 @@ class _HomepageState extends State<Homepage> {
     if (index == 2) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const AddToCard()),
+        MaterialPageRoute(builder: (context) => const AddToCart()),
       );
     }
   }
@@ -45,7 +45,7 @@ class _HomepageState extends State<Homepage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const AddToCard()),
+                MaterialPageRoute(builder: (context) => const AddToCart()),
               );
             },
           ),
