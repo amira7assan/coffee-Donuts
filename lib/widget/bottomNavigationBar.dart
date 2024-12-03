@@ -34,6 +34,10 @@ class BottomNavBar extends StatelessWidget {
           label: 'Go to Cart',
         ),
         BottomNavigationBarItem(
+          icon: Icon(Icons.favorite),
+          label: 'Favorites',
+        ),
+        BottomNavigationBarItem(
           icon: Icon(Icons.person, color: Colors.black),
           label: 'Me',
         ),

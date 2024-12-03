@@ -1,12 +1,12 @@
-// widget/ProductList.dart
+/*
 import 'package:flutter/material.dart';
+import 'package:mobile_project/models/Cart.dart';
 import '../models/product.dart';
 
-class ProductList extends StatelessWidget {
+class favourit extends StatelessWidget {
   final List<Product> products;
-  final Function(Product) onAddToCart;
 
-  const ProductList({Key? key, required this.products, required this.onAddToCart}) : super(key: key);
+  const favourit({Key? key, required this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class ProductList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(right: 80),
+                      padding: const EdgeInsets.only(right: 120),
                       child: Text(
                         product.category,
                         style: const TextStyle(
@@ -45,7 +45,7 @@ class ProductList extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 80),
+                      padding: const EdgeInsets.only(right: 120),
                       child: Text(
                         product.title,
                         style: const TextStyle(
@@ -55,7 +55,7 @@ class ProductList extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 80),
+                      padding: const EdgeInsets.only(right: 120),
                       child: Text(
                         '\$${product.price.toStringAsFixed(2)}',
                         style: const TextStyle(
@@ -63,18 +63,18 @@ class ProductList extends StatelessWidget {
                         ),
                       ),
                     ),
-                        Padding(
-                        padding: const EdgeInsets.only(left: 120),
-                  child: IconButton(
-                  icon: const Icon(Icons.shopping_cart),
-                    onPressed: () {
-                          onAddToCart(product);
+                    Padding(
+                      padding: const EdgeInsets.only(left: 150),
+                      child: IconButton(
+                        icon: const Icon(Icons.add_shopping_cart),
+                        onPressed: () {
+                          Cart.addToCart(product);
                           ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('${product.title} added to cart!'))
-                                );
-                      },
-                   ),
-                   ),
+                            SnackBar(content: Text('${product.title} added to cart')),
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -85,3 +85,4 @@ class ProductList extends StatelessWidget {
     );
   }
 }
+*/
