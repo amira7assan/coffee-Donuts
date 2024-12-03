@@ -128,7 +128,6 @@ class screenState extends State<SplashScreen> {
 
 class Content extends StatelessWidget {
   final String image, title, description;
-
   const Content({
     super.key,
     required this.image,
