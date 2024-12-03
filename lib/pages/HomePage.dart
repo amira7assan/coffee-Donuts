@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_project/pages/AddToCard.dart';
+import 'package:mobile_project/widget/ProductList.dart';
+import '../models/product.dart';
+import '../widget/bottomNavigationBar.dart';
+
 class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+  const Homepage({Key? key}) : super(key: key);
 
   @override
   _HomepageState createState() => _HomepageState();
@@ -26,14 +30,14 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: const Color(0xffDFA2A6),
         title: const Text('Coffee', style: TextStyle(fontWeight: FontWeight.bold)),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {
+              // Search functionality (if needed)
             },
           ),
           IconButton(
@@ -47,38 +51,13 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-      body: Center(
-        child: Text(
-          'Welcome to the Coffee Shop!',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ProductList(products: testProduct),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black,
-        selectedLabelStyle: TextStyle(color: Colors.black),
-        unselectedLabelStyle: TextStyle(color: Colors.black),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.black),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: Colors.black),
-            label: 'Category',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart, color: Colors.black),
-            label: 'go to cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Colors.black),
-            label: 'Me',
-          ),
-        ],
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
