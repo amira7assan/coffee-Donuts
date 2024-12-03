@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:mobile_project/models/product.dart';
+
 /*
 class Cart {
   static List<Product> items = [];

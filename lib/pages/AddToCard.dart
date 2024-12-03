@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import '../models/cart.dart';
-import 'package:mobile_project/models/product.dart';
-import 'package:mobile_project/models/cart_iteam.dart';
 import 'package:mobile_project/models/Cart2.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_project/models/Cart2.dart';

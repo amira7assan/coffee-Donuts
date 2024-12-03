@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_project/pages/AddToCard.dart';
 import 'package:mobile_project/widget/bottomNavigationBar.dart';
-import '../models/cart.dart';
 import 'package:mobile_project/models/cart_iteam.dart';
 import '../models/product.dart';
 import '../widget/ProductList.dart';

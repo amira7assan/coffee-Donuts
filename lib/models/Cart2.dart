@@ -1,5 +1,4 @@
 import 'package:mobile_project/models/cart_iteam.dart';
-import 'product.dart';
 class Cart {
   List<CartItem> items = [];
 
