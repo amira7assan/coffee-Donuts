@@ -45,7 +45,7 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey, // Set the background color to grey
+        backgroundColor: Colors.grey,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         selectedItemColor: Colors.black,
@@ -62,6 +62,7 @@ class _HomepageState extends State<Homepage> {
             icon: Icon(Icons.shopping_cart,color: Colors.black),
             label: 'Cart',
           ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.person,color: Colors.black),
             label: 'Me',
