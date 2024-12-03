@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_project/pages/AddToCard.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
