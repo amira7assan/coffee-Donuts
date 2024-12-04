@@ -26,7 +26,7 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
           query = '';
         },
       ),
-      VoiceSearchWidget(  // Use the VoiceSearchWidget
+      VoiceSearchWidget(
         onQueryChanged: (newQuery) {
           query = newQuery;
         },

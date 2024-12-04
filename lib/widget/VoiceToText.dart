@@ -28,11 +28,10 @@ class _VoiceSearchWidgetState extends State<VoiceSearchWidget> {
       });
       _speech.listen(onResult: (result) {
         String recognizedWords = result.recognizedWords.trim();
-        // Remove period at the end if it exists
         if (recognizedWords.endsWith('.')) {
           recognizedWords = recognizedWords.substring(0, recognizedWords.length - 1);
         }
-        widget.onQueryChanged(recognizedWords);  // Pass the recognized words to the callback
+        widget.onQueryChanged(recognizedWords);
       });
     }
   }
