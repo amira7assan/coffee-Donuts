@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';  // To format the date
-
+import 'package:intl/intl.dart';
 class BirthdayCalculator extends StatefulWidget {
   @override
   _BirthdayCalculatorState createState() => _BirthdayCalculatorState();
@@ -10,7 +9,6 @@ class _BirthdayCalculatorState extends State<BirthdayCalculator> {
   DateTime? _selectedDate;
   String _ageText = "";
 
-  // Method to calculate age
   void _calculateAge() {
     if (_selectedDate == null) {
       return;
@@ -20,22 +18,19 @@ class _BirthdayCalculatorState extends State<BirthdayCalculator> {
     int months = now.month - _selectedDate!.month;
     int days = now.day - _selectedDate!.day;
 
-    // Adjust for negative months and days
     if (months < 0) {
       years--;
       months += 12;
     }
     if (days < 0) {
       months--;
-      days += DateTime(now.year, now.month, 0).day; // Get the days in the previous month
+      days += DateTime(now.year, now.month, 0).day;
     }
 
     setState(() {
       _ageText = "Age: $years years, $months months, $days days";
     });
   }
-
-  // Open date picker to select a date
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -76,13 +71,6 @@ class _BirthdayCalculatorState extends State<BirthdayCalculator> {
                     : DateFormat('yyyy-MM-dd').format(_selectedDate!),
               ),
             ),
-            SizedBox(height: 20),
-            // Display the selected date
-            if (_selectedDate != null)
-              Text(
-                "Selected Date: ${DateFormat('yyyy-MM-dd').format(_selectedDate!)}",
-                style: TextStyle(fontSize: 18, color: Colors.black),
-              ),
             SizedBox(height: 20),
             // Display the calculated age
             Text(

@@ -23,11 +23,25 @@ List<Product> myData = [
     image: 'assets/espresso.jpg',
   ),
   Product(
+    id: '4',
+    category: 'Dessert',
+    title: 'donuts with coconut ',
+    price: 6.99,
+    image: 'assets/chocolate_cake.jpg',
+  ),
+  Product(
     id: '2',
     category: 'Coffee',
     title: 'Latte',
     price: 5.49,
     image: 'assets/latte.jpg',
+  ),
+  Product(
+    id: '6',
+    category: 'mix',
+    title: 'donuts & latte',
+    price: 16,
+    image: 'assets/mix1.jpg',
   ),
   Product(
     id: '3',
@@ -36,11 +50,11 @@ List<Product> myData = [
     price: 3.99,
     image: 'assets/green_tea.jpg',
   ),
-  Product(
-    id: '4',
+   Product(
+    id: '5',
     category: 'Dessert',
-    title: 'Chocolate Cake',
-    price: 6.99,
-    image: 'assets/chocolate_cake.jpg',
+    title: 'donuts with almond',
+    price: 13,
+    image: 'assets/cofee&dount.jpg',
   ),
 ];
