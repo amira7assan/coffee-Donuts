@@ -1,39 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_project/models/product.dart';
-import 'package:mobile_project/widget/bottomNavigationBar.dart';
+import 'package:mobile_project/widget/add_to_cart_icon.dart';
+import 'package:mobile_project/widget/favourit_icon.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Product product;
+  final Function(Product) onAddToCart;
+  final Function(Product) onAddToFavorites;
+  final bool isFavorite;
 
-  ProductDetailsPage({required this.product});
+  ProductDetailsPage({
+    required this.product,
+    required this.onAddToCart,
+    required this.onAddToFavorites,
+    required this.isFavorite,
+  });
 
   @override
   _ProductDetailsPageState createState() => _ProductDetailsPageState();
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
-  int _selectedIndex = 0;
-  bool isFavorite = false;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  void onAddToFavorites(Product product) {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-  }
-
-  // Add product to shopping cart
-  void onAddToCart(Product product) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('${product.title} added to cart!')),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,29 +62,20 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 50),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.favorite,
-                      color: isFavorite ? Colors.red : Colors.grey,
-                    ),
-                    onPressed: () => onAddToFavorites(widget.product),
-                  ),
+                FavoriteIcon(
+                  product: widget.product,
+                  isFavorite: widget.isFavorite,
+                  onToggleFavorite: () => widget.onAddToFavorites(widget.product),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.add_shopping_cart),
-                  onPressed: () => onAddToCart(widget.product),
+                AddToCartIcon(
+                  product: widget.product,
+                  onAddToCart: () => widget.onAddToCart(widget.product),
                 ),
               ],
             ),
           ],
         ),
       ),
-      /*bottomNavigationBar: BottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
-      ),*/
     );
   }
 }

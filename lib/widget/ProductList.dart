@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_project/widget/add_to_cart_icon.dart';
-import 'package:mobile_project/widget/favourit_icon.dart';
 import '../models/product.dart';
 import 'package:mobile_project/pages/details.dart';
 
@@ -41,7 +39,12 @@ class ProductList extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProductDetailsPage(product: product),
+                        builder: (context) => ProductDetailsPage(
+                          product: product,
+                          onAddToCart: onAddToCart,
+                          onAddToFavorites: onAddToFavorites,
+                          isFavorite: isFavorite[product] == true,
+                        ),
                       ),
                     );
                   },
@@ -58,23 +61,33 @@ class ProductList extends StatelessWidget {
                   children: [
                     Text(
                       product.title,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '\$${product.price.toStringAsFixed(2)}',
-                      style: const TextStyle(color: Colors.black),
+                      '\$${product.price}',
+                      style: TextStyle(color: Colors.grey[700]),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        FavoriteIcon(
-                          product: product,
-                          isFavorite: isFavorite[product] == true,
-                          onToggleFavorite: () => onAddToFavorites(product),
+                        IconButton(
+                          icon: Icon(
+                            isFavorite[product] == true
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: isFavorite[product] == true
+                                ? Colors.red
+                                : Colors.grey,
+                          ),
+                          onPressed: () {
+                            onAddToFavorites(product);
+                          },
                         ),
-                        AddToCartIcon(
-                          product: product,
-                          onAddToCart: () => onAddToCart(product),
+                        IconButton(
+                          icon: const Icon(Icons.add_shopping_cart),
+                          onPressed: () {
+                            onAddToCart(product);
+                          },
                         ),
                       ],
                     ),

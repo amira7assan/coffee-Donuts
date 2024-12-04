@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_project/pages/AddToCard.dart';
 import 'package:mobile_project/widget/bottomNavigationBar.dart';
 import 'package:mobile_project/models/cart_iteam.dart';
+import 'package:mobile_project/pages/Fav.dart';
+import 'package:mobile_project/widget/Search.dart';
 import '../models/product.dart';
 import '../widget/ProductList.dart';
 import 'package:mobile_project/models/Cart2.dart';
-import 'package:mobile_project/pages/Fav.dart';
-import 'package:mobile_project/widget/Search.dart';
-
+import 'package:mobile_project/pages/AddToCard.dart';
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -57,8 +56,6 @@ class _HomepageState extends State<Homepage> {
       }
     });
   }
-
-  // Bottom navigation bar item tapped
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -119,8 +116,10 @@ class _HomepageState extends State<Homepage> {
                 context: context,
                 delegate: ProductSearchDelegate(
                   products: myData,
-                  onProductSelected: (product) {
-                  },
+                  onProductSelected: (product) {},
+                  onAddToCart: _addToCart,
+                  onAddToFavorites: _toggleFavorite,
+                  isFavorite: _isFavorite,
                 ),
               );
             },
@@ -130,7 +129,7 @@ class _HomepageState extends State<Homepage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ProductList(
-          products: _filteredProducts.isEmpty ? myData : _filteredProducts, // Use filtered products or all
+          products: _filteredProducts.isEmpty ? myData : _filteredProducts,
           onAddToCart: _addToCart,
           onAddToFavorites: _toggleFavorite,
           isFavorite: _isFavorite,

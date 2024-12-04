@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_project/models/product.dart';
 import 'package:mobile_project/pages/details.dart';
+
 class ProductSearchDelegate extends SearchDelegate<Product> {
   final List<Product> products;
   final Function(Product) onProductSelected;
+  final Function(Product) onAddToCart;
+  final Function(Product) onAddToFavorites;
+  final Map<Product, bool> isFavorite;
 
-  ProductSearchDelegate({required this.products, required this.onProductSelected});
+  ProductSearchDelegate({
+    required this.products,
+    required this.onProductSelected,
+    required this.onAddToCart,
+    required this.onAddToFavorites,
+    required this.isFavorite,
+  });
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -36,7 +46,12 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ProductDetailsPage(product: product),
+                builder: (context) => ProductDetailsPage(
+                  product: product,
+                  onAddToCart: onAddToCart,
+                  onAddToFavorites: onAddToFavorites,
+                  isFavorite: isFavorite[product] == true,
+                ),
               ),
             ); // Navigate to ProductDetailsPage
           },
@@ -63,7 +78,12 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ProductDetailsPage(product: product),
+                builder: (context) => ProductDetailsPage(
+                  product: product,
+                  onAddToCart: onAddToCart,
+                  onAddToFavorites: onAddToFavorites,
+                  isFavorite: isFavorite[product] == true,
+                ),
               ),
             ); // Navigate to ProductDetailsPage
           },
