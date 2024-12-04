@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_project/models/product.dart';
 import 'package:mobile_project/pages/details.dart';
-
+import 'package:mobile_project/widget/VoiceToText.dart';
 class ProductSearchDelegate extends SearchDelegate<Product> {
   final List<Product> products;
   final Function(Product) onProductSelected;
@@ -24,6 +24,11 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
         icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
+        },
+      ),
+      VoiceSearchWidget(  // Use the VoiceSearchWidget
+        onQueryChanged: (newQuery) {
+          query = newQuery;
         },
       ),
     ];
