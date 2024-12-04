@@ -15,26 +15,20 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   int _selectedIndex = 0;
   bool isFavorite = false;
 
-  // Handle item tap event for bottom navigation
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
-  // Add product to favorites
   void onAddToFavorites(Product product) {
     setState(() {
       isFavorite = !isFavorite;
     });
-    // Here you can add functionality to update the favorite status, e.g., saving to a database or a list
-    // For example: favorites.add(product);
   }
 
   // Add product to shopping cart
   void onAddToCart(Product product) {
-    // Implement your cart functionality here
-    // For example: cart.add(product);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('${product.title} added to cart!')),
     );

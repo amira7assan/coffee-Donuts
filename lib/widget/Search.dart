@@ -32,7 +32,7 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
             (product) => ListTile(
           title: Text(product.title),
           onTap: () {
-            onProductSelected(product); // Handle selection
+            onProductSelected(product);
             Navigator.push(
               context,
               MaterialPageRoute(

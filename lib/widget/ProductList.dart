@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_project/widget/add_to_cart_icon.dart';
+import 'package:mobile_project/widget/favourit_icon.dart';
 import '../models/product.dart';
 import 'package:mobile_project/pages/details.dart';
+
 class ProductList extends StatelessWidget {
   final List<Product> products;
   final Function(Product) onAddToCart;
@@ -43,8 +46,8 @@ class ProductList extends StatelessWidget {
                     );
                   },
                   child: Image.asset(
-                    product.image,//width: 300,height: 300
-                     fit: BoxFit.cover,
+                    product.image,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -64,19 +67,14 @@ class ProductList extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 50),
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.favorite,
-                              color: isFavorite[product] == true ? Colors.red : Colors.grey,
-                            ),
-                            onPressed: () => onAddToFavorites(product),
-                          ),
+                        FavoriteIcon(
+                          product: product,
+                          isFavorite: isFavorite[product] == true,
+                          onToggleFavorite: () => onAddToFavorites(product),
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.add_shopping_cart),
-                          onPressed: () => onAddToCart(product),
+                        AddToCartIcon(
+                          product: product,
+                          onAddToCart: () => onAddToCart(product),
                         ),
                       ],
                     ),

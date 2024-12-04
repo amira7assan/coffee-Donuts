@@ -4,7 +4,7 @@ import 'package:mobile_project/models/cart_iteam.dart';
 
 class AddToCard extends StatefulWidget {
   final Cart cart;
-  const AddToCard({Key? key, required this.cart}) : super(key: key);
+  const AddToCard.go_to_cart({Key? key, required this.cart}) : super(key: key);
 
   @override
   _AddToCardState createState() => _AddToCardState();

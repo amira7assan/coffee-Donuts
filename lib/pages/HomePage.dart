@@ -77,7 +77,7 @@ class _HomepageState extends State<Homepage> {
     } else if (index == 2) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => AddToCard(cart: _cart)),
+        MaterialPageRoute(builder: (context) => AddToCard.go_to_cart(cart: _cart)),
       );
     }
   }
@@ -94,7 +94,7 @@ class _HomepageState extends State<Homepage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddToCard(cart: _cart)),
+                MaterialPageRoute(builder: (context) => AddToCard.go_to_cart(cart: _cart)),
               );
             },
           ),
@@ -120,7 +120,6 @@ class _HomepageState extends State<Homepage> {
                 delegate: ProductSearchDelegate(
                   products: myData,
                   onProductSelected: (product) {
-                    _addToCart(product);
                   },
                 ),
               );
