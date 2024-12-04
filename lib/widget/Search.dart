@@ -33,7 +33,8 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
   Widget buildResults(BuildContext context) {
     final results = products
         .where((product) =>
-        product.title.toLowerCase().contains(query.toLowerCase()))
+    product.title.toLowerCase().contains(query.toLowerCase()) ||
+        product.category.toLowerCase().contains(query.toLowerCase()))
         .toList();
 
     return ListView(
@@ -65,7 +66,8 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
   Widget buildSuggestions(BuildContext context) {
     final suggestions = products
         .where((product) =>
-        product.title.toLowerCase().contains(query.toLowerCase()))
+    product.title.toLowerCase().contains(query.toLowerCase()) ||
+        product.category.toLowerCase().contains(query.toLowerCase()))
         .toList();
 
     return ListView(
@@ -74,7 +76,7 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
             (product) => ListTile(
           title: Text(product.title),
           onTap: () {
-            onProductSelected(product); // Handle selection
+            onProductSelected(product);
             Navigator.push(
               context,
               MaterialPageRoute(

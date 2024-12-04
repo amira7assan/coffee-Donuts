@@ -60,6 +60,9 @@ class ProductList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
+                      product.category,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ), Text(
                       product.title,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
