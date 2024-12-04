@@ -73,7 +73,7 @@ class FavouritesPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 150),
+                            padding: const EdgeInsets.only(left: 100),
                             child: IconButton(
                               icon: const Icon(Icons.favorite),
                               color: Colors.red,

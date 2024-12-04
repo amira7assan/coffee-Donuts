@@ -53,7 +53,7 @@ class _BirthdayCalculatorState extends State<BirthdayCalculator> {
         title: Text("Birthday Calculator"),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 100),
+        padding: const EdgeInsets.only(left: 50),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
