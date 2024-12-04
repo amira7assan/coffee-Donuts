@@ -10,11 +10,7 @@ class E_Commerce_App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
       home: SplashScreen(),
     );
-
-
-
   }
 }

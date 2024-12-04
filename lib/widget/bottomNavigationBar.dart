@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:mobile_project/widget/Birthday.dart';
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onItemTapped;
@@ -15,7 +15,16 @@ class BottomNavBar extends StatelessWidget {
     return BottomNavigationBar(
       backgroundColor: Colors.grey,
       currentIndex: selectedIndex,
-      onTap: onItemTapped,
+      onTap: (index) {
+        if (index == 1) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => BirthdayCalculator()),
+          );
+        } else {
+          onItemTapped(index);
+        }
+      },
       selectedItemColor: Colors.black,
       unselectedItemColor: Colors.black.withOpacity(0.6),
       selectedLabelStyle: const TextStyle(color: Colors.black),
@@ -26,7 +35,7 @@ class BottomNavBar extends StatelessWidget {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.search),
+          icon: Icon(Icons.calendar_month),
           label: 'Category',
         ),
         BottomNavigationBarItem(
