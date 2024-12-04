@@ -27,10 +27,16 @@ class _VoiceSearchWidgetState extends State<VoiceSearchWidget> {
         _isListening = true;
       });
       _speech.listen(onResult: (result) {
-        widget.onQueryChanged(result.recognizedWords);  // Pass the recognized words to the callback
+        String recognizedWords = result.recognizedWords.trim();
+        // Remove period at the end if it exists
+        if (recognizedWords.endsWith('.')) {
+          recognizedWords = recognizedWords.substring(0, recognizedWords.length - 1);
+        }
+        widget.onQueryChanged(recognizedWords);  // Pass the recognized words to the callback
       });
     }
   }
+
 
   void _stopListening() {
     _speech.stop();
