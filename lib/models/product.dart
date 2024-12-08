@@ -50,11 +50,17 @@ List<Product> myData = [
     price: 3.99,
     image: 'assets/green_tea.jpg',
   ),
-   Product(
+  Product(
     id: '5',
     category: 'Dessert',
     title: 'donuts with almond',
     price: 13,
     image: 'assets/cofee&dount.jpg',
+  ), Product(
+    id: '6',
+    category: 'mix',
+    title: 'donuts and coffee',
+    price: 19,
+    image: 'assets/mix.jpg',
   ),
 ];
