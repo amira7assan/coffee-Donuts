@@ -2,13 +2,10 @@ import 'package:mobile_project/models/cart_iteam.dart';
 
 
 class Cart {
-  // List to hold cart items
   List<CartItem> _items = [];
 
-  // Get all items in the cart
   List<CartItem> get items => _items;
 
-  // Add item to the cart
   void addItem(CartItem cartItem) {
     var existingItem = _items.firstWhere(
           (item) => item.product.id == cartItem.product.id,

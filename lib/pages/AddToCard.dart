@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_project/models/Cart2.dart';
+import 'package:mobile_project/models/Cart.dart';
 import 'package:mobile_project/models/cart_iteam.dart';
 
 class AddToCard extends StatefulWidget {

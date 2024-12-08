@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_project/widget/Birthday.dart';
+import 'package:mobile_project/pages/Homepage.dart';
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onItemTapped;
@@ -16,13 +17,20 @@ class BottomNavBar extends StatelessWidget {
       backgroundColor: Colors.grey,
       currentIndex: selectedIndex,
       onTap: (index) {
-        if (index == 1) {
+        if (index == 0) {
+          // When Home is tapped, navigate to the homepage where all products are displayed
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => Homepage()),
+          );
+        } else if (index == 1) {
+          // If Category is tapped, navigate to the category page (you can replace with actual category page)
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => BirthdayCalculator()),
+            MaterialPageRoute(builder: (_) => BirthdayCalculator()), // Replace with your category page
           );
         } else {
-          onItemTapped(index);
+          onItemTapped(index); // For other items, handle the usual onItemTapped logic
         }
       },
       selectedItemColor: Colors.black,
