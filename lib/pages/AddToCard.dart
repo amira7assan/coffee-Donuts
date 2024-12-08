@@ -40,7 +40,7 @@ class _AddToCardState extends State<AddToCard> {
               onPressed: () {
                 Navigator.of(context).pop();
                 setState(() {
-                  cartItem.quantity = 1; // Reset quantity to 1 if canceled
+                  cartItem.quantity = 1;
                 });
               },
               child: const Text('No'),
@@ -49,7 +49,7 @@ class _AddToCardState extends State<AddToCard> {
               onPressed: () {
                 Navigator.of(context).pop();
                 setState(() {
-                  widget.cart.items.remove(cartItem); // Remove the item from cart
+                  widget.cart.items.remove(cartItem);
                 });
               },
               child: const Text('Yes'),

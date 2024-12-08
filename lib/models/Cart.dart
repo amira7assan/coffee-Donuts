@@ -19,12 +19,10 @@ class Cart {
     }
   }
 
-  // Remove item from the cart
   void removeItem(CartItem cartItem) {
     _items.removeWhere((item) => item.product.id == cartItem.product.id);
   }
 
-  // Calculate the total price of all items in the cart
   double get totalPrice {
     double total = 0;
     for (var item in _items) {
@@ -33,7 +31,6 @@ class Cart {
     return total;
   }
 
-  // Optionally, clear the cart
   void clear() {
     _items.clear();
   }

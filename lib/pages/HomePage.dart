@@ -22,7 +22,6 @@ class _HomepageState extends State<Homepage> {
   List<Product> _filteredProducts = [];
   String? _selectedCategory;
 
-  // List of categories based on your Product data
   final List<String> categories = ['All', 'Coffee', 'Dessert', 'Tea', 'mix'];
 
   void _addToCart(Product product) {
@@ -84,7 +83,6 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
-  // Method to filter products by selected category
   void _filterProductsByCategory(String category) {
     setState(() {
       _selectedCategory = category;
@@ -145,7 +143,6 @@ class _HomepageState extends State<Homepage> {
       ),
       body: Column(
         children: [
-          // Dropdown for category selection
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownButton<String>(
@@ -164,16 +161,15 @@ class _HomepageState extends State<Homepage> {
               }).toList(),
             ),
           ),
-          // Display filtered products
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Two columns for better visibility
+                  crossAxisCount: 2,
                   crossAxisSpacing: 8.0,
                   mainAxisSpacing: 8.0,
-                  childAspectRatio: 0.75, // Adjust the size of items
+                  childAspectRatio: 0.75,
                 ),
                 itemCount: _filteredProducts.isEmpty ? myData.length : _filteredProducts.length,
                 itemBuilder: (context, index) {
@@ -189,7 +185,7 @@ class _HomepageState extends State<Homepage> {
                           child: Image.asset(
                             product.image,
                             fit: BoxFit.cover,
-                            height: 120,
+                            height: 80,
                             width: double.infinity,
                           ),
                         ),
