@@ -47,7 +47,8 @@ class _VoiceSearchWidgetState extends State<VoiceSearchWidget> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(_isListening ? Icons.mic : Icons.mic_none),
+      icon: Icon(_isListening ? Icons.mic
+          : Icons.mic_none),
       onPressed: () {
         if (_isListening) {
           _stopListening();

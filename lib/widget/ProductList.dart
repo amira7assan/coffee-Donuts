@@ -1,6 +1,8 @@
+/*
+//didnot use it for now
 import 'package:flutter/material.dart';
 import '../models/product.dart';
-import 'package:mobile_project/pages/details.dart';
+//import 'package:mobile_project/pages/details.dart';
 
 class ProductList extends StatelessWidget {
   final List<Product> products;
@@ -104,3 +106,4 @@ class ProductList extends StatelessWidget {
     );
   }
 }
+*/

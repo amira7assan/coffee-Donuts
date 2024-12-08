@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_project/pages/details.dart';
 import 'package:mobile_project/widget/bottomNavigationBar.dart';
 import 'package:mobile_project/models/cart_iteam.dart';
 import 'package:mobile_project/pages/Fav.dart';
@@ -174,59 +175,77 @@ class _HomepageState extends State<Homepage> {
                 itemCount: _filteredProducts.isEmpty ? myData.length : _filteredProducts.length,
                 itemBuilder: (context, index) {
                   final product = _filteredProducts.isEmpty ? myData[index] : _filteredProducts[index];
-                  return Card(
-                    elevation: 4.0,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            product.image,
-                            fit: BoxFit.cover,
-                            height: 80,
-                            width: double.infinity,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            product.category,
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                        ), Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            product.title,
-                            //style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(
-                            '\$${product.price.toStringAsFixed(2)}',
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
-                          ),
-                        ),
-                        Spacer(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                              icon: Icon(
-                                _isFavorite[product] == true ? Icons.favorite : Icons.favorite_border,
-                                color: Colors.red,
-                              ),
-                              onPressed: () => _toggleFavorite(product),
+                  return Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductDetailsPage(
+                              product: product,
+                              onAddToCart: _addToCart,
+                              onAddToFavorites: _toggleFavorite,
+                              isFavorite: _isFavorite[product] == true,
                             ),
-                            IconButton(
-                              icon: Icon(Icons.add_shopping_cart, color: Colors.black),
-                              onPressed: () => _addToCart(product),
+                          ),
+                        );
+                      },
+                      child: Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                product.image,
+                                fit: BoxFit.cover,
+                                height: 80,
+                                width: double.infinity,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                product.category,
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                product.title,
+                                //style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(
+                                '\$${product.price.toStringAsFixed(2)}',
+                                style: TextStyle(fontSize: 14, color: Colors.grey),
+                              ),
+                            ),
+                            Spacer(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconButton(
+                                  icon: Icon(
+                                    _isFavorite[product] == true ? Icons.favorite : Icons.favorite_border,
+                                    color: Colors.red,
+                                  ),
+                                  onPressed: () => _toggleFavorite(product),
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.add_shopping_cart, color: Colors.black),
+                                  onPressed: () => _addToCart(product),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
+                      ),
                     ),
                   );
                 },
