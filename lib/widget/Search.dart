@@ -55,12 +55,11 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
 
   @override
   Widget buildResults(BuildContext context) {
-    // Filter products by ID, Title, or Category
     final results = products
         .where((product) =>
-    product.id.toLowerCase().contains(query.toLowerCase()) || // Search by ID
-        product.title.toLowerCase().contains(query.toLowerCase()) || // Search by Title
-        product.category.toLowerCase().contains(query.toLowerCase())) // Search by Category
+    product.id.toLowerCase().contains(query.toLowerCase()) ||
+        product.title.toLowerCase().contains(query.toLowerCase()) ||
+        product.category.toLowerCase().contains(query.toLowerCase()))
         .toList();
 
     return ListView(
@@ -91,12 +90,11 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // Show suggestions filtered by ID, Title, or Category
     final suggestions = products
         .where((product) =>
-    product.id.toLowerCase().contains(query.toLowerCase()) || // Search by ID
-        product.title.toLowerCase().contains(query.toLowerCase()) || // Search by Title
-        product.category.toLowerCase().contains(query.toLowerCase())) // Search by Category
+    product.id.toLowerCase().contains(query.toLowerCase()) ||
+        product.title.toLowerCase().contains(query.toLowerCase()) ||
+        product.category.toLowerCase().contains(query.toLowerCase()))
         .toList();
 
     return ListView(
@@ -146,7 +144,7 @@ class BarcodeScannerScreen extends StatelessWidget {
           if (capture.barcodes.isNotEmpty) {
             final barcode = capture.barcodes.first.rawValue;
             if (barcode != null) {
-              Navigator.of(context).pop(barcode); // Return barcode result
+              Navigator.of(context).pop(barcode);
             }
           }
         },
