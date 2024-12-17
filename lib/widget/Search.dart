@@ -47,7 +47,7 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
             showResults(context); // Show search results
           }
         },
-        icon: const Icon(Icons.qr_code_scanner), // Use a valid icon
+        icon: const Icon(Icons.barcode_reader), // Use a valid icon
       ),
 
     ];
