@@ -35,7 +35,6 @@ class ProductSearchDelegate extends SearchDelegate<Product> {
       ),
       IconButton(
         onPressed: () async {
-          // Open Barcode Scanner and wait for result
           final barcodeResult = await Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => BarcodeScannerScreen(),
